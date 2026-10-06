@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduación 6° Primaria - José María Pino Suárez</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+     <link rel="stylesheet" href="./style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            light: '#1E3A8A',
+                            DEFAULT: '#0F172A',
+                            dark: '#0B0F19',
+                        },
+                        gold: {
+                            light: '#FDE047',
+                            DEFAULT: '#CA8A04',
+                            dark: '#A16207',
+                        },
+                        amberGold: '#EAB308',
+                        softBlue: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="relative antialiased selection:bg-amberGold selection:text-navy-dark">
+
+    <div class="fixed bottom-5 right-5 z-50">
+        <button id="audioToggle" class="w-12 h-12 rounded-full gold-gradient-bg text-white shadow-2xl flex items-center justify-center transition-transform hover:scale-110 focus:outline-none ring-2 ring-amberGold/50">
+            <i id="audioIcon" class="fa-solid fa-music animate-pulse"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-love-110038.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <header class="relative min-h-screen flex flex-col items-center justify-between text-center px-6 py-12 bg-gradient-to-b from-navy-dark via-navy to-navy-dark overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-amberGold/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
+
+        <div class="z-10 animate-fade-in">
+            <span class="tracking-[0.25em] uppercase text-xs text-amber-300 font-cinzel font-semibold bg-white/5 py-1.5 px-4 rounded-full border border-amberGold/30">Primaria José María Pino Suárez</span>
+            <div class="w-12 h-[2px] bg-amberGold mx-auto mt-3"></div>
+        </div>
+
+        <div class="z-10 my-auto py-6">
+            <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-6 rounded-full p-1 gold-gradient-bg shadow-2xl">
+                <img src="https://placehold.co/500x500/0f172a/fde047?text=2026" alt="Generación Sexto Grado" class="w-full h-full object-cover rounded-full border-4 border-navy-dark shadow-inner">
+            </div>
+            <span class="text-xs uppercase tracking-widest text-slate-400 font-medium block mb-1">Generación 2021 - 2026</span>
+            <h1 class="font-cinzel text-4xl sm:text-5xl font-bold gold-gradient-text mb-3">Clausura y Graduación</h1>
+            <p class="font-serif italic text-lg sm:text-xl text-slate-300 max-w-sm mx-auto">"El futuro pertenece a quienes creen en la belleza de sus sueños."</p>
+            <div class="mt-6 inline-block bg-navy-light/60 border border-amberGold/40 px-6 py-2.5 rounded-2xl">
+                <span class="text-xs font-semibold tracking-wider text-amber-300 font-cinzel"><i class="fa-regular fa-calendar mr-2"></i> VIERNES • 10 • JULIO • 2026</span>
+            </div>
+        </div>
+
+        <div class="z-10 animate-bounce pb-2">
+            <a href="#countdown" class="text-amberGold text-lg">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <section id="countdown" class="py-16 px-6 bg-navy relative border-t border-b border-amberGold/20">
+        <div class="max-w-xl mx-auto text-center">
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Cuenta Regresiva</span>
+            <h3 class="font-cinzel text-2xl font-bold text-white mt-1 mb-6">Para el Gran Día</h3>
+            
+            <div class="grid grid-cols-4 gap-3 sm:gap-4">
+                <div class="glass-card p-4 rounded-2xl shadow-lg border border-amberGold/30">
+                    <span id="days" class="block font-cinzel text-2xl sm:text-4xl font-bold gold-gradient-text">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-medium">Días</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-lg border border-amberGold/30">
+                    <span id="hours" class="block font-cinzel text-2xl sm:text-4xl font-bold gold-gradient-text">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-medium">Horas</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-lg border border-amberGold/30">
+                    <span id="minutes" class="block font-cinzel text-2xl sm:text-4xl font-bold gold-gradient-text">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-medium">Minutos</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-lg border border-amberGold/30">
+                    <span id="seconds" class="block font-cinzel text-2xl sm:text-4xl font-bold gold-gradient-text">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-medium">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-navy-dark">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Sede del Festejo</span>
+            <h2 class="font-cinzel text-3xl font-bold text-white mt-2">Salón Los Loros</h2>
+            <div class="w-12 h-[2px] bg-amberGold mx-auto mt-3"></div>
+            <p class="text-sm text-slate-400 mt-2">Av. de las Torres, Chimalhuacán, Estado de México</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-8 rounded-3xl shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl gold-gradient-bg text-navy-dark flex items-center justify-center text-xl mx-auto mb-6 shadow-md">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-2">Ceremonia Académica</h3>
+                    <p class="text-sm text-slate-300 font-medium mb-1">Entrega de Diplomas de Sexto Grado</p>
+                    <p class="text-xs text-slate-400 mb-4">Salón Los Loros (Área Principal)</p>
+                    <div class="bg-amberGold/10 border border-amberGold/30 py-2 px-4 rounded-xl inline-block mb-6">
+                        <span class="text-xs font-semibold text-amber-300"><i class="fa-regular fa-clock mr-1"></i> 10:00 AM</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/?q=Salon+de+Eventos+Loros+Chimalhuacan" target="_blank" class="w-full py-3 rounded-xl border border-amberGold text-amber-300 font-cinzel text-xs uppercase tracking-wider font-semibold hover:bg-amberGold hover:text-navy-dark transition-all shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot"></i> Ver en Google Maps
+                </a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-xl mx-auto mb-6 shadow-md">
+                        <i class="fa-solid fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-2">Comida y Festejo</h3>
+                    <p class="text-sm text-slate-300 font-medium mb-1">Banquete de Generación</p>
+                    <p class="text-xs text-slate-400 mb-4">Salón Los Loros (Terraza y Jardín)</p>
+                    <div class="bg-blue-600/20 border border-blue-500/30 py-2 px-4 rounded-xl inline-block mb-6">
+                        <span class="text-xs font-semibold text-blue-300"><i class="fa-regular fa-clock mr-1"></i> 02:00 PM</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/?q=Salon+de+Eventos+Loros+Chimalhuacan" target="_blank" class="w-full py-3 rounded-xl bg-blue-600 text-white font-cinzel text-xs uppercase tracking-wider font-semibold hover:bg-blue-500 transition-all shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot"></i> Cómo Llegar
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-amberGold/20 text-amber-300 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="text-left">
+                    <h4 class="font-cinzel text-sm font-bold text-white">Estacionamiento</h4>
+                    <p class="text-xs text-slate-400 mt-0.5">Amplio espacio interior y vigilancia sobre Av. de las Torres.</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-blue-600/20 text-blue-300 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-shirt"></i>
+                </div>
+                <div class="text-left">
+                    <h4 class="font-cinzel text-sm font-bold text-white">Código de Vestimenta</h4>
+                    <p class="text-xs text-slate-400 mt-0.5">Formal / Elegante (Damitas vestido formal, caballeros traje o sport elegante).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-navy border-t border-amberGold/20">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Itinerario</span>
+            <h2 class="font-cinzel text-3xl font-bold text-white mt-2">Programa del Evento</h2>
+            <div class="w-12 h-[2px] bg-amberGold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-xl mx-auto relative border-l-2 border-amberGold/40 ml-4 sm:ml-auto space-y-8 pl-6">
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amberGold border-4 border-navy shadow"></div>
+                <span class="text-xs font-bold text-amber-300 tracking-wider">09:30 AM</span>
+                <h4 class="font-cinzel text-base font-bold text-white mt-0.5">Recepción de Alumnos y Padres</h4>
+                <p class="text-xs text-slate-400 mt-1">Registro de invitados y acomodo en el salón principal.</p>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amberGold border-4 border-navy shadow"></div>
+                <span class="text-xs font-bold text-amber-300 tracking-wider">10:00 AM</span>
+                <h4 class="font-cinzel text-base font-bold text-white mt-0.5">Ceremonia Oficial de Graduación</h4>
+                <p class="text-xs text-slate-400 mt-1">Honores a la bandera, palabras del director y profesores.</p>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amberGold border-4 border-navy shadow"></div>
+                <span class="text-xs font-bold text-amber-300 tracking-wider">11:30 AM</span>
+                <h4 class="font-cinzel text-base font-bold text-white mt-0.5">Entrega de Diplomas y Menciones</h4>
+                <p class="text-xs text-slate-400 mt-1">Pase de lista y entrega de reconocimientos de 6° grado.</p>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amberGold border-4 border-navy shadow"></div>
+                <span class="text-xs font-bold text-amber-300 tracking-wider">01:00 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-white mt-0.5">Foto de Generación & Brindis</h4>
+                <p class="text-xs text-slate-400 mt-1">Fotografía grupal con toga y birrete, seguida de brindis de honor.</p>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amberGold border-4 border-navy shadow"></div>
+                <span class="text-xs font-bold text-amber-300 tracking-wider">02:00 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-white mt-0.5">Banquete y Celebración</h4>
+                <p class="text-xs text-slate-400 mt-1">Comida familiar, música y convivencia escolar.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-navy-dark">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Agradecimientos Especiales</span>
+            <h2 class="font-cinzel text-3xl font-bold text-white mt-2">Profesores y Padrinos</h2>
+            <div class="w-12 h-[2px] bg-amberGold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-6 rounded-3xl text-center border border-amberGold/30">
+                <div class="w-12 h-12 rounded-full bg-amberGold/20 text-amber-300 flex items-center justify-center text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <h3 class="font-cinzel text-lg font-bold text-white mb-2">Cuerpo Docente</h3>
+                <p class="text-xs text-slate-300 mb-1"><strong>Prof. Roberto Gómez</strong> - Director</p>
+                <p class="text-xs text-slate-300 mb-1"><strong>Profa. Carmen Morales</strong> - Titular de 6° "A"</p>
+                <p class="text-xs text-slate-300"><strong>Prof. Alejandro Ruiz</strong> - Titular de 6° "B"</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-amberGold/30">
+                <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-300 flex items-center justify-center text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                </div>
+                <h3 class="font-cinzel text-lg font-bold text-white mb-2">Padrinos de Generación</h3>
+                <p class="text-xs text-slate-300 mb-1"><strong>Lic. Fernando Estrada</strong></p>
+                <p class="text-xs text-slate-300 mb-1"><strong>Ing. Patricia Salgado</strong></p>
+                <p class="text-xs text-slate-400 italic mt-3">"Gracias por guiar e impulsar el talento de nuestra niñez."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-navy">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Recuerdos</span>
+            <h2 class="font-cinzel text-3xl font-bold text-white mt-2">Galería Primaria</h2>
+            <div class="w-12 h-[2px] bg-amberGold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64 border border-white/10">
+                <img src="https://placehold.co/600x800/1e3a8a/fde047?text=Clases+y+Amigos" alt="Recuerdo 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64 border border-white/10">
+                <img src="https://placehold.co/600x800/0f172a/cbd5e1?text=Actividades+Escolares" alt="Recuerdo 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64 col-span-2 sm:col-span-1 border border-white/10">
+                <img src="https://placehold.co/600x800/ca8a04/ffffff?text=Generacion+2026" alt="Recuerdo 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-gradient-to-b from-navy to-navy-dark relative">
+        <div class="max-w-lg mx-auto glass-card p-8 rounded-3xl shadow-xl border border-amberGold/30">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-[0.3em] text-amber-300 font-cinzel font-semibold">Confirmación</span>
+                <h2 class="font-cinzel text-2xl font-bold text-white mt-2">Asistencia (RSVP)</h2>
+                <div class="w-12 h-[2px] bg-amberGold mx-auto mt-2 mb-3"></div>
+                <p class="text-xs text-slate-300 font-light">Confirma tu asistencia y número de boletos requeridos antes del <strong class="text-white">30 de Junio de 2026</strong>.</p>
+            </div>
+
+            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4">
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-slate-300 uppercase mb-1">Nombre del Alumno o Familia</label>
+                    <input type="text" id="guestName" required placeholder="Ej. Familia Pérez Hernández" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-navy-dark text-white text-sm focus:outline-none focus:border-amberGold transition-colors">
+                </div>
+
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-slate-300 uppercase mb-1">Número de Asistentes / Boletos</label>
+                    <select id="guestCount" required class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-navy-dark text-white text-sm focus:outline-none focus:border-amberGold transition-colors">
+                        <option value="" disabled selected>Selecciona cantidad</option>
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4">4 Personas</option>
+                        <option value="5">5 Personas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-slate-300 uppercase mb-1">Felicitaciones o Comentarios</label>
+                    <textarea id="guestMessage" rows="3" placeholder="Escribe un mensaje de éxito para los graduados..." class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-navy-dark text-white text-sm focus:outline-none focus:border-amberGold transition-colors"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient-bg text-navy-dark font-cinzel text-xs uppercase tracking-widest font-bold hover:opacity-95 transition-all shadow-md">
+                    Confirmar Asistencia
+                </button>
+            </form>
+
+            <div id="rsvpSuccess" class="hidden text-center py-6">
+                <div class="w-14 h-14 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-green-500/30">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-cinzel text-lg font-bold text-white mb-1">¡Registro Exitoso!</h3>
+                <p id="successText" class="text-xs text-slate-300 font-light"></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-navy-dark text-white text-center px-6 border-t border-slate-800">
+        <h3 class="font-cinzel text-xl text-amber-300 mb-1">Primaria José María Pino Suárez</h3>
+        <p class="font-sans text-xs tracking-widest text-slate-400 mb-4">¡Muchas felicidades a todos los graduados!</p>
+        <div class="w-8 h-[2px] bg-amberGold mx-auto mb-4"></div>
+        <p class="text-[10px] text-slate-500">&copy; 2026 Generación de Sexto Grado. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const eventDate = new Date("July 10, 2026 10:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById("guestName").value;
+            const count = document.getElementById("guestCount").value;
+            
+            document.getElementById("rsvpForm").classList.add("hidden");
+            const successDiv = document.getElementById("rsvpSuccess");
+            successDiv.classList.remove("hidden");
+            document.getElementById("successText").innerHTML = `¡Gracias <strong>${name}</strong>!<br>Hemos registrado tus <strong>${count} boletos</strong> para la ceremonia en el Salón Los Loros.<br>¡Nos vemos en el festejo!`;
+        }
+
+        const audioToggle = document.getElementById("audioToggle");
+        const bgMusic = document.getElementById("bgMusic");
+        const audioIcon = document.getElementById("audioIcon");
+        let isPlaying = false;
+
+        audioToggle.addEventListener("click", () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.classList.remove("fa-pause", "fa-pulse");
+                audioIcon.classList.add("fa-music");
+                isPlaying = false;
+            } else {
+                bgMusic.play().catch(e => console.log("Audio autoplay restricted"));
+                audioIcon.classList.remove("fa-music");
+                audioIcon.classList.add("fa-pause", "fa-pulse");
+                isPlaying = true;
+            }
+        });
+    </script>
+</body>
+</html>
